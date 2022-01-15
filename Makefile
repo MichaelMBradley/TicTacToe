@@ -1,5 +1,5 @@
 EXE = ttt
-OBJ = main.o game.o board.o
+OBJ = main.o game.o board.o list.o
 CC = gcc -Wall
 
 all:	$(OBJ)
@@ -13,6 +13,9 @@ game.o:	game.c defs.h
 
 board.o:	board.c defs.h
 	$(CC) -c board.c
+
+list.o:	list.c defs.h
+	$(CC) -c list.c
 
 clean:
 	rm -rf $(EXE) $(OBJ)

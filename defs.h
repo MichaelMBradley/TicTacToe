@@ -32,16 +32,18 @@ typedef struct
 int boardIndexFromInput(int);
 int inputFromBoardIndex(int);
 void initBoard(BoardType*);
-void initList(ListType*);
+void printBoard(BoardType*);
+void printBoardSquare(FillType, int);
 
 // game.c
 AINoteType runGame(int);
-void printBoard(BoardType*);
-void printBoardSquare(FillType, int);
 
 // main.c
 int main(int, char**);
 int getNumPlayers(int, char**);
 int random(int);
+
+// list.c
+void initList(ListType*);
 
 #endif

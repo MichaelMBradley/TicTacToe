@@ -69,12 +69,58 @@ void initBoard(BoardType *board)
 }
 
 /*
- * Function: initList
- * Purpose: Initializes a list structure
- *      in: List to initialize
+ * Function: printBoard
+ * Purpose: Prints the game board
+ *      in: Board to print
  */
-void initList(ListType *list)
+void printBoard(BoardType *board)
 {
-	list->size = 0;
-	list->head = NULL;
+	// Prints each square in order
+	// Placing dividers in between
+	for(int y = 0; y < 3; ++y)
+	{
+		for(int x = 0; x < 3; ++x)
+		{
+			printBoardSquare(board->board[y * 3 + x], y * 3 + x);
+			if(x != 2)
+			{
+				// In between squares
+				printf("|");
+			}
+			else
+			{
+				// After lines
+				printf("\n");
+			}
+		}
+		if(y != 2)
+		{
+			printf("-+-+-\n");
+		}
+	}
+	printf("\n");
+}
+
+/*
+ * Function: printBoardSquare
+ * Purpose: Prints a square on the game board
+ *      in: What is in the square
+ *      in: Index of array at print position
+ */
+void printBoardSquare(FillType fill, int index)
+{
+	// Only three possible cases
+	// Print the relevant symbol
+	switch(fill)
+	{
+		case CLEAR:
+			printf("%d", inputFromBoardIndex(index));
+			break;
+		case X:
+			printf("X");
+			break;
+		case O:
+			printf("O");
+			break;
+	}
 }
