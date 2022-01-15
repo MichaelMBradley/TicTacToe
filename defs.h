@@ -5,29 +5,43 @@
 #include <stdio.h>
 #include <time.h>
 
+#define BOARD_SQUARES 9
+
 typedef enum {X, O, CLEAR} FillType;
 typedef enum {NOWIN, XWIN, OWIN, BOTHWIN} AINoteType;
 
-typedef struct Node {
+typedef struct Node
+{
 	struct Node *next;
 	AINoteType note;
 } NodeType;
 
-typedef struct {
+typedef struct
+{
 	NodeType *head;
 	int size;
 } ListType;
 
-typedef struct {
-	FillType board[9];
-	ListType *moves;
+typedef struct
+{
+	FillType board[BOARD_SQUARES];
+	ListType moves;
 } BoardType;
 
-// game.c
-int main(int, char**);
-int random(int);
+// board.c
+int boardIndexFromInput(int);
+int inputFromBoardIndex(int);
+void initBoard(BoardType*);
+void initList(ListType*);
 
-// func.c
+// game.c
+AINoteType runGame(int);
+void printBoard(BoardType*);
+void printBoardSquare(FillType, int);
+
+// main.c
+int main(int, char**);
 int getNumPlayers(int, char**);
+int random(int);
 
 #endif

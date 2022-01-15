@@ -1,25 +1,72 @@
 #include "defs.h"
 
 /*
- * Function: getNumPlayers
- * Purpose: Gets the user-indicated number of players from the command line arguments
- *      in: number of arguments
- *      in: arguments
- * returns: Number of players, or -1 if the input was invalid
+ * Function: runGame
+ * Purpose: Runs a game of tic-tac-toe
+ *      in: Number of players {1, 2}
  */
-int getNumPlayers(int argc, char *argv[])
+AINoteType runGame(int numPlayers)
 {
-	int numPlayers = -1;
-	switch(argc) {
-		case 1:
-			return 1;
-		case 2:
-			sscanf(argv[1], "%d", &numPlayers);
-			if(numPlayers < 1 || 2 < numPlayers) {
-				break;
+	BoardType board;
+	initBoard(&board);
+	printBoard(&board);
+
+	return NOWIN;
+}
+
+/*
+ * Function: printBoard
+ * Purpose: Prints the game board
+ *      in: Board to print
+ */
+void printBoard(BoardType *board)
+{
+	// Prints each square in order
+	// Placing dividers in between
+	for(int y = 0; y < 3; ++y)
+	{
+		for(int x = 0; x < 3; ++x)
+		{
+			printBoardSquare(board->board[y * 3 + x], y * 3 + x);
+			if(x != 2)
+			{
+				// In between squares
+				printf("|");
 			}
-			return numPlayers;
+			else
+			{
+				// After lines
+				printf("\n");
+			}
+		}
+		if(y != 2)
+		{
+			printf("-+-+-\n");
+		}
 	}
-	printf("Please enter as an argument the number of players: {1, 2}\n");
-	return -1;
+	printf("\n");
+}
+
+/*
+ * Function: printBoardSquare
+ * Purpose: Prints a square on the game board
+ *      in: What is in the square
+ *      in: Index of array at print position
+ */
+void printBoardSquare(FillType fill, int index)
+{
+	// Only three possible cases
+	// Print the relevant symbol
+	switch(fill)
+	{
+		case CLEAR:
+			printf("%d", inputFromBoardIndex(index));
+			break;
+		case X:
+			printf("X");
+			break;
+		case O:
+			printf("O");
+			break;
+	}
 }
