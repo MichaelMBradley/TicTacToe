@@ -18,13 +18,13 @@ int main(int argc, char *argv[])
 
 	switch(runGame(numPlayers))
 	{
-		case NOWIN:
+		case NO_WIN:
 			printf("Tie!\n");
 			break;
-		case XWIN:
+		case X_WIN:
 			printf("Player X wins!\n");
 			break;
-		case OWIN:
+		case O_WIN:
 			printf("Player O wins!\n");
 			break;
 		default:

@@ -1,6 +1,18 @@
 #include "defs.h"
 
 /*
+ * Function: cleanBoard
+ * Purpose: Frees a board from memory
+ *      in: Board to deallocate
+ */
+void cleanBoard(BoardType *board)
+{
+	free(board->board);
+	cleanList(board->moves);
+	free(board);
+}
+
+/*
  * Function: boardIndexFromInput
  * Purpose: Convert the user input to an array index
  *      in: User input {1->9}
@@ -59,13 +71,14 @@ int inputFromBoardIndex(int index)
  * Purpose: Initializes a board structure
  *      in: Pointer to board to be initialized
  */
-void initBoard(BoardType *board)
+void initBoard(BoardType **board)
 {
+	(*board) = (BoardType *) malloc(sizeof(BoardType));
 	for(int i = 0; i < BOARD_SQUARES; ++i)
 	{
-		board->board[i] = CLEAR;
+		(*(*board)->board[i]) = CLEAR;
 	}
-	initList(&(board->moves));
+	initList(&((*board)->moves));
 }
 
 /*
