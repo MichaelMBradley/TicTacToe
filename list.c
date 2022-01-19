@@ -45,27 +45,6 @@ void cleanList(ListType *list)
 }
 
 /*
- * Function: getNode
- * Purpose: Find the node with the given id
- *      in: List to search
- *      in: ID to search for
- *     out: Node (if found)
- * returns: NODE_FOUND or NODE_NOT_FOUND
- */
-int getNode(ListType *list, int id, NodeType **nodeReturn)
-{
-	for(NodeType *check = list->head; check != NULL; check = check->next)
-	{
-		if(check->id == id)
-		{
-			(*nodeReturn) = check;
-			return NODE_FOUND;
-		}
-	}
-	return NODE_NOT_FOUND;
-}
-
-/*
  * Function: initList
  * Purpose: Initializes a list structure
  *      in: List to initialize

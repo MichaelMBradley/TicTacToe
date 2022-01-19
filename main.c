@@ -18,9 +18,6 @@ int main(int argc, char *argv[])
 
 	switch(runGame(numPlayers))
 	{
-		case NO_WIN:
-			printf("Tie!\n");
-			break;
 		case X_WIN:
 			printf("Player X wins!\n");
 			break;
@@ -28,7 +25,7 @@ int main(int argc, char *argv[])
 			printf("Player O wins!\n");
 			break;
 		default:
-			printf("How the hell did you get here?\n");
+			printf("Tie!\n");
 	}
 
 	return 0;
@@ -62,7 +59,7 @@ int getNumPlayers(int argc, char *argv[])
 
 /*
  * Function: random
- * Purpose: Generates a random integer from 1-max (exclusive)
+ * Purpose: Generates a random integer from [1-max)
  *      in: Exclusive max
  *     out: Random integer
  */

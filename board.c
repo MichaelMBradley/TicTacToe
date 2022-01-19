@@ -7,7 +7,6 @@
  */
 void cleanBoard(BoardType *board)
 {
-	free(board->board);
 	cleanList(board->moves);
 	free(board);
 }
@@ -76,7 +75,7 @@ void initBoard(BoardType **board)
 	(*board) = (BoardType *) malloc(sizeof(BoardType));
 	for(int i = 0; i < BOARD_SQUARES; ++i)
 	{
-		(*(*board)->board[i]) = CLEAR;
+		(*board)->board[i] = CLEAR;
 	}
 	initList(&((*board)->moves));
 }
@@ -129,10 +128,10 @@ void printBoardSquare(FillType fill, int index)
 		case CLEAR:
 			printf("%d", inputFromBoardIndex(index));
 			break;
-		case X:
+		case PLAYER_X:
 			printf("X");
 			break;
-		case O:
+		case PLAYER_O:
 			printf("O");
 			break;
 	}
